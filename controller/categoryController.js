@@ -1,6 +1,7 @@
 const { createCategorySchema, updateCategorySchema } = require('../validation/categoryValidation');
 const Category = require('../models/category');
 const Subcategory = require('../models/subcategory');
+const axios = require ("axios")
 
 // Create Category
 exports.createCategory = async (req, h) => {
@@ -185,3 +186,21 @@ exports.deleteCategory = async (req, h) => {
   }
 };
 
+exports.getDataFromMydb = async (req, h) => {
+  try {
+    // Make a GET request to the external API
+    const response = await axios.get('http://localhost:4000/categories');
+
+    // Return the data from the API response
+    return h.response({
+      message: 'Data retrieved successfully',
+      data: response.data
+    }).code(200);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    return h.response({
+      message: 'Internal Server Error',
+      error: err.message
+    }).code(500);
+  }
+};

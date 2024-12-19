@@ -27,6 +27,11 @@ const categoryRoutes = [
     path: '/categories/{id}',
     handler: categoryController.deleteCategory,
   },
+  {
+    method: 'GET',
+    path: '/getFromMydb',
+    handler: categoryController.getDataFromMydb,
+  },
 ];
 
 module.exports = categoryRoutes;
