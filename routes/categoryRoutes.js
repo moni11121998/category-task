@@ -1,6 +1,7 @@
+const Hapi = require('@hapi/hapi');
 const categoryController = require('../controller/categoryController');
 
-module.exports = [
+const categoryRoutes = [
   {
     method: 'POST',
     path: '/categories',
@@ -27,3 +28,5 @@ module.exports = [
     handler: categoryController.deleteCategory,
   },
 ];
+
+module.exports = categoryRoutes;
